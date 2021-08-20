@@ -9,12 +9,12 @@ const validarUsuario = () => {
     let usuario = document.getElementById('user').value;
     let password = document.getElementById('password').value;
 
-    // let validacion = {
-    //     user,
-    //     pass
-    // }
-
     let userData = JSON.parse(localStorage.getItem('usuarios'));
+
+    if(userData === null){
+        alert('Usuario no reconocido')
+        window.location.href = "./register.html"
+    }
 
     let filtro = userData.filter(data => data.user === usuario)
 
