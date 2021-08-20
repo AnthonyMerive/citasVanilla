@@ -13,31 +13,28 @@
 
 <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Iniciar Sesion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Registro</a>
-                    </li>
-                </ul>
+    <header class="encabezado">
+        <nav class="navbar navbar-expand-xxl navbar-light bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">EPS SURA</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./login.html">Cerrar Sesion</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-
-    <h1 class="card-title text-center" id="sura">EPS SURA</h1>
+        </nav>
+    </header>
 
     <!--Buscador-->
-    <div>
-        <label class="label">Buscar por nombre</label>
+    <div id="buscar" class="container">
+        <label class="label">Buscar cita por nombre:</label>
         <input id="inputBuscar">
         <button id="btnBuscar">Buscar</button>
     </div>
@@ -48,7 +45,7 @@
     </div>
 
     <!--Agregar cita-->
-    <div class="card mt-5">
+    <div class="card mt-5 container">
         <div class="card-body">
             <form id="formulario">
                 <h1 class="card-title text-center"> Agregar Citas</h1>
@@ -80,19 +77,21 @@
                         </textarea>
                     </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary">
-                    Guardar
-                </button>
-                <button id="limpiarForm" class="btn btn-primary">
-                    Limpiar
-                </button>
+                <br>
+                <div id="botones"> 
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
+                    <button id="limpiarForm" class="btn btn-danger">
+                        Limpiar
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 
     <!--Listar citas-->
-    <div class="card mt-5" id="listar">
+    <div class="card mt-5 container" id="listar">
         <div>
             <h2 class="card-title text-center">Agenda</h2>
             <table class="table">

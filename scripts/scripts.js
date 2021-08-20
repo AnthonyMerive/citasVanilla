@@ -77,9 +77,11 @@ const busqueda = () => {
 
     if (filtro.length === 0) {
         listarBusqueda.innerHTML += `
-        <div style="color:white;"> ${busqueda} no tiene cita asignada
+        <div class="card mt-5 container">
+        <div style="text-align:center;"> ${busqueda} no tiene cita asignada
         </div>
-        <button id="btnBorrar">Borrar</button>
+        <button class="btn btn-danger" id="btnBorrar">Borrar</button>
+        </div>
         `
         let borrarBusqueda = document.getElementById('btnBorrar');
         borrarBusq(borrarBusqueda);
@@ -89,14 +91,17 @@ const busqueda = () => {
             const { nombre, fecha, hora, sintomas } = cita;
             listarBusqueda.innerHTML += `
             <br>
-            <div style="color:white;">¡PACIENTE ENCONTRADO!</div>
+            <div class="card mt-5 container"">
+            <div style="text-align:center;">¡PACIENTE ENCONTRADO!</div>
             <br>
-            <div style="color:white;">Paciente ${nombre}</div>
-            <div style="color:white;">cita para el dia ${fecha}</div>
-            <div style="color:white;">a las ${hora}</div>
-            <div style="color:white;">por motivo ${sintomas}</div>
+            <div style="text-align:center;">Paciente ${nombre}</div>
+            <div style="text-align:center;">cita para el dia ${fecha}</div>
+            <div style="text-align:center;">a las ${hora}</div>
+            <div style="text-align:center;">por motivo ${sintomas}</div>
             <br>
-            <button id="btnBorrar">Borrar</button>
+            <button class="btn btn-danger" id="btnBorrar">Borrar</button>
+            </div>
+            
             `
         })
         let borrarBusqueda = document.getElementById('btnBorrar');
