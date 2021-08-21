@@ -1,5 +1,5 @@
 let register = document.getElementById('register');
-let limpiarForm = document.getElementById('limpiarForm');
+let regresar = document.getElementById('regresar');
 
 
 register.addEventListener('submit', e => {
@@ -7,9 +7,9 @@ register.addEventListener('submit', e => {
     registrarUsuario();
 })
 
-limpiarForm.addEventListener('click', e => {
+regresar.addEventListener('click', e => {
     e.preventDefault();
-    register.reset();
+    window.location.href = "./login.html"
 })
 
 let dataUser = [];

@@ -16,7 +16,7 @@ btnBuscar.addEventListener('click', e => {
     busqueda();
 })
 
-limpiarForm.addEventListener('click', e=>{
+limpiarForm.addEventListener('click', e => {
     e.preventDefault();
     formulario.reset();
 })
@@ -27,22 +27,36 @@ const capturaDatos = () => {
     let fecha = document.getElementById('fecha').value;
     let hora = document.getElementById('hora').value;
     let sintomas = document.getElementById('sintomas').value;
+    let dataLocalStorage = JSON.parse(localStorage.getItem('citas'));
 
-    let registro = {
-        nombre,
-        fecha,
-        hora,
-        sintomas
+    if (dataLocalStorage == null) {
+        let registro = {
+            nombre,
+            fecha,
+            hora,
+            sintomas
+        }
+
+        citas.unshift(registro);
+        localStorage.setItem('citas', JSON.stringify(citas));
+    } else {
+        let registro = {
+            nombre,
+            fecha,
+            hora,
+            sintomas
+        }
+
+        dataLocalStorage.unshift(registro);
+        localStorage.setItem('citas', JSON.stringify(dataLocalStorage));
     }
-
-    citas.unshift(registro);
-    localStorage.setItem('citas', JSON.stringify(citas));
     getLocalStorage();
 }
 
 const getLocalStorage = () => {
     listarCitas.innerHTML = '';
     let citasLocalStorage = JSON.parse(localStorage.getItem('citas'));
+
     if (citasLocalStorage == null) {
         citasLocalStorage = [];
     } else {
@@ -63,6 +77,7 @@ const getLocalStorage = () => {
         `
         })
     }
+
 }
 
 document.addEventListener('DOMContentLoaded', getLocalStorage);
@@ -73,7 +88,7 @@ const busqueda = () => {
     let buscar = data.find(dato => dato.nombre.toLowerCase() === busqueda.toLowerCase())
     let indice = data.indexOf(buscar);
     let filtro = data.filter(cita => cita.nombre.toLowerCase() === busqueda.toLowerCase())
-    
+
     listarBusqueda.innerHTML = '';
 
     if (filtro.length === 0) {
@@ -87,7 +102,7 @@ const busqueda = () => {
         </div>
         `
         let continuar = document.getElementById('continuar');
-      
+
         continuarBusq(continuar);
     } else {
         filtro.map(cita => {
@@ -112,15 +127,15 @@ const busqueda = () => {
         })
         let borrarBusqueda = document.getElementById('btnBorrar');
         let confirmar = document.getElementById('confirmar');
-        borrarBusq(borrarBusqueda,indice);
+        borrarBusq(borrarBusqueda, indice);
         confirmarCita(confirmar);
     }
 
 }
 
-const borrarBusq = (borrar,index) => {
+const borrarBusq = (borrar, index) => {
     let citasLocalStorage = JSON.parse(localStorage.getItem('citas'));
-    borrar.addEventListener('click', e =>{
+    borrar.addEventListener('click', e => {
         citasLocalStorage.splice(index, 1);
         localStorage.setItem('citas', JSON.stringify(citasLocalStorage));
         getLocalStorage();
@@ -132,7 +147,7 @@ const borrarBusq = (borrar,index) => {
 }
 
 const continuarBusq = (con) => {
-    con.addEventListener('click', e =>{
+    con.addEventListener('click', e => {
         e.preventDefault();
         listarBusqueda.innerHTML = '';
         document.getElementById('inputBuscar').value = "";
@@ -140,7 +155,7 @@ const continuarBusq = (con) => {
 }
 
 const confirmarCita = (con) => {
-    con.addEventListener('click', e =>{
+    con.addEventListener('click', e => {
         e.preventDefault();
         listarBusqueda.innerHTML = '';
         document.getElementById('inputBuscar').value = "";
