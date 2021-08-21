@@ -7,9 +7,9 @@ lo rediccionara a la pagina de registro, en registro se creara un usuario y cont
 a login para inicio de sesion, en login se uso un filter con el nombre del usuario para buscar en el arreglo del localstorage si hay un usuario con ese nombre, luego
 se valida la contraseña, de ser correcto redirecciona a el registro de citas, alli al agregar citas se visualizan en agenda y se guardan en localsotrage, si se busca
 el nombre de la persona se conseguira el registro de cita y este podria ser borrado si se le da al boton cancelar cita, al cancelar se usa un splice para borrar ese objeto del 
-arreglo citas, luego se debe subir la nueva informacion al localstorage para que se actualice y asi pueda visualizarse en agenda que esta fue borrada, para conservar las citas
+arreglo citas, para usar el splice correctamente se necesita la posicion por medio del indice, con lo cual se usa un find y luego un indexOf, luego se debe subir la nueva informacion al localstorage para que se actualice y asi pueda visualizarse en agenda que esta fue borrada, para conservar las citas
 en cada aspecto de creacion de elemenentos del arreglo, se valida primero lo guardado en localStorage, asi, si recargamos la pagina no comienza nuevamente a cargar nuevos
-elementos borrando los anteriores, igual se hizo con las contraseñas y usuarios, se validan antes de cualquier modificacion para asi, no se borren al agregar nuevos registros
+elementos borrando los anteriores, igual se hizo con las contraseñas y usuarios, se valida el localstorage y si hay elementos se toman para reescribirlos y volverlos a subir, asi no se borran al agregar nuevos registros
 
 -queda pendiente:
 
