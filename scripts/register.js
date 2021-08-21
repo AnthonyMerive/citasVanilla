@@ -32,6 +32,7 @@ const registrarUsuario = () => {
         }
 
         dataUser.unshift(usuarios);
+
         localStorage.setItem('usuarios', JSON.stringify(dataUser));
 
         alert('usuario creado correctamente')

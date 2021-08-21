@@ -70,7 +70,8 @@ document.addEventListener('DOMContentLoaded', getLocalStorage);
 const busqueda = () => {
     let busqueda = document.getElementById('inputBuscar').value;
     let data = JSON.parse(localStorage.getItem('citas'));
-
+    let buscar = data.find(dato => dato.nombre.toLowerCase() === busqueda.toLowerCase())
+    let indice = data.indexOf(buscar);
     let filtro = data.filter(cita => cita.nombre.toLowerCase() === busqueda.toLowerCase())
     
     listarBusqueda.innerHTML = '';
@@ -80,11 +81,14 @@ const busqueda = () => {
         <div class="card mt-5 container">
         <div style="text-align:center;"> ${busqueda} no tiene cita asignada
         </div>
-        <button class="btn btn-danger" id="btnBorrar">Borrar</button>
+        <br>
+        <br>
+        <button class="btn btn-success" id="continuar">OK</button>
         </div>
         `
-        let borrarBusqueda = document.getElementById('btnBorrar');
-        borrarBusq(borrarBusqueda);
+        let continuar = document.getElementById('continuar');
+      
+        continuarBusq(continuar);
     } else {
         filtro.map(cita => {
 
@@ -99,24 +103,48 @@ const busqueda = () => {
             <div style="text-align:center;">a las ${hora}</div>
             <div style="text-align:center;">por motivo ${sintomas}</div>
             <br>
-            <button class="btn btn-danger" id="btnBorrar">Borrar</button>
+            <button class="btn btn-success" id="confirmar">Confirmar</button>
+            <br>
+            <button class="btn btn-danger" id="btnBorrar">Cancelar cita</button>
             </div>
             
             `
         })
         let borrarBusqueda = document.getElementById('btnBorrar');
-        borrarBusq(borrarBusqueda);
+        let confirmar = document.getElementById('confirmar');
+        borrarBusq(borrarBusqueda,indice);
+        confirmarCita(confirmar);
     }
 
 }
 
-const borrarBusq =(borrar) => {
+const borrarBusq = (borrar,index) => {
+    let citasLocalStorage = JSON.parse(localStorage.getItem('citas'));
     borrar.addEventListener('click', e =>{
+        citasLocalStorage.splice(index, 1);
+        localStorage.setItem('citas', JSON.stringify(citasLocalStorage));
+        getLocalStorage();
+        e.preventDefault();
+        listarBusqueda.innerHTML = '';
+        document.getElementById('inputBuscar').value = "";
+        alert('Su cita ha sido cancelada')
+    })
+}
+
+const continuarBusq = (con) => {
+    con.addEventListener('click', e =>{
         e.preventDefault();
         listarBusqueda.innerHTML = '';
         document.getElementById('inputBuscar').value = "";
     })
 }
 
-
+const confirmarCita = (con) => {
+    con.addEventListener('click', e =>{
+        e.preventDefault();
+        listarBusqueda.innerHTML = '';
+        document.getElementById('inputBuscar').value = "";
+        alert('Su cita ha sido confirmada')
+    })
+}
 
